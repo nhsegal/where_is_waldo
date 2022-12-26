@@ -3,9 +3,9 @@ import photo from "../imgs/solvayphoto.jpeg";
 
 const facecoodinates = [
   //Back row left to right
-  "325,145,40", 
-  "438,173,40", 
-  "520,208,40", 
+  "325,145,40",
+  "438,173,40",
+  "520,208,40",
   "654,192,40",
   "790,208,40",
   "914,180,40",
@@ -23,9 +23,17 @@ const facecoodinates = [
   "527,333,40",
   "616,288,40",
   "702,336,40",
-
+  "796,268,40",
+  "892,326,40",
+  "936,268,40",
+  "1042,326,40",
+  "1086,278,40",
+  "1162,326,40",
+  "1246,278,40",
+  "1332,326,40",
+  "1390,290,40",
+  "1450,340,40",
 ];
-
 
 function Game() {
   const tagFace = (ev) => {
@@ -35,26 +43,19 @@ function Game() {
   return (
     <div>
       <map name="testmap">
-        {
-        facecoodinates.map( function(entry, index) {
-          return(
+        {facecoodinates.map(function (entry, index) {
+          return (
             <area
-            shape="circle"
-            coords={entry}
-            tabIndex="0"
-            alt={index}
-            onClick={tagFace}
-            key={entry}
-            data-id-number="0"
-          />  
-          
-          )
-        }
-        )
-}
-       
-    
-        
+              shape="circle"
+              coords={entry}
+              tabIndex="0"
+              alt={index}
+              onClick={tagFace}
+              key={entry}
+              data-id-number="0"
+            />
+          );
+        })}
       </map>
       <img src={photo} alt="Solvay Conference" useMap="#testmap" />
     </div>
