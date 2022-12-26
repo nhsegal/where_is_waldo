@@ -1,49 +1,62 @@
 import React from "react";
 import photo from "../imgs/solvayphoto.jpeg";
 
+const facecoodinates = [
+  //Back row left to right
+  "325,145,40", 
+  "438,173,40", 
+  "520,208,40", 
+  "654,192,40",
+  "790,208,40",
+  "914,180,40",
+  "1024,180,40",
+  "1138,180,40",
+  "1260,170,40",
+  "1338,130,40",
+  "1400,173,40",
+  // Seated
+  "154,287,40",
+  "204,333,40",
+  "297,294,40",
+  "367,338,40",
+  "448,288,40",
+  "527,333,40",
+  "616,288,40",
+  "702,336,40",
+
+];
+
+
 function Game() {
- 
-
   const tagFace = (ev) => {
-    console.log(ev.target)
-  }
-
-  function drawCircle(x, y, radius, fill, stroke, strokeWidth) {
-    const canvas = document.getElementById('canvas');
-    console.log(canvas)
-    const ctx = canvas.getContext('2d');
-    ctx.beginPath()
-    ctx.arc(x, y, radius, 0, 2 * Math.PI, false)
-    if (fill) {
-      ctx.fillStyle = fill
-      ctx.fill()
-    }
-    if (stroke) {
-      ctx.lineWidth = strokeWidth
-      ctx.strokeStyle = stroke
-      ctx.stroke()
-    }
-  }
+    console.log(ev.target);
+  };
 
   return (
     <div>
-      {
-        <canvas id="canvas" width="800" height="600" 
-        style ={{background: `url('${photo}')`}} 
-        onClick={drawCircle(100, 100, 100, false,  'black', 'red', 2)}>
-        Your browser does not support the canvas element.
-      </canvas>
-      /*
-      Instead of canvas
-      Shows the first three heads
       <map name="testmap">
-        <area shape="circle" coords="325,145,40" tabIndex="0" alt="first" onClick={tagFace} data-id-number="0"/>
-        <area shape="circle" coords="438,173,40" tabIndex="0" alt="second" data-test-id="1" />
-        <area shape="circle" coords="520,208,40" tabIndex="0" alt="third" />
+        {
+        facecoodinates.map( function(entry, index) {
+          return(
+            <area
+            shape="circle"
+            coords={entry}
+            tabIndex="0"
+            alt={index}
+            onClick={tagFace}
+            key={entry}
+            data-id-number="0"
+          />  
+          
+          )
+        }
+        )
+}
+       
+    
+        
       </map>
       <img src={photo} alt="Solvay Conference" useMap="#testmap" />
-      */
-      }
     </div>
   );
 }
