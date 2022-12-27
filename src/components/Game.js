@@ -1,5 +1,7 @@
 import React from "react";
 import photo from "../imgs/solvayphoto.jpeg";
+import "./Game.css"
+
 
 const facecoodinates = [
   //Back row left to right
@@ -35,29 +37,106 @@ const facecoodinates = [
   "1450,340,40",
 ];
 
+const names = [
+  "Auguste Piccard",
+  "Émile Henriot",
+  "Paul Ehrenfest",
+  "Édouard Herzen",
+  "Théophile de Donder",
+  "Erwin Schrödinger",
+  "Jules-Émile Verschaffelt",
+  "Wolfgang Pauli",
+  "Werner Heisenberg",
+  "Ralph Howard Fowler",
+  "Léon Brillouin",
+  "Peter Debye",
+  "Martin Knudsen",
+  "William Lawrence Bragg",
+  "Hendrik Anthony Kramers",
+  "Paul Dirac",
+  "Arthur Compton",
+  "Louis de Broglie",
+  "Max Born",
+  "Niels Bohr",
+  "Irving Langmuir",
+  "Max Planck",
+  "Marie Curie",
+  "Hendrik Lorentz",
+  "Albert Einstein",
+  "Paul Langevin",
+  "Charles-Eugène Guye",
+  "Charles Thomson Rees Wilson",
+  "Owen Willans Richardson",
+];
+
+
+
+
 function Game() {
   const tagFace = (ev) => {
     console.log(ev.target);
   };
 
   return (
-    <div>
+    <div className={"container"}>
+       <div className="test-label">HELLO!</div>
+       {
+       facecoodinates.map(function (entry, index) {
+        let x = entry.split(',')[0]
+        let y = entry.split(',')[1]
+
+        const myComponentStyle = {
+          top: `${y}px`,
+          left: `${x}px`,
+         }
+          return (
+            <div className={"tag-div"} key={entry + 100} style={myComponentStyle}  >
+            Where is this label
+          </div>
+          )})}
+
+
+
+      <img src={photo} alt="Solvay Conference" useMap="#testmap" />
+{
+      /*
+      {facecoodinates.map(function (entry, index) {
+        let x = entry.split(',')[0]
+        let y = entry.split(',')[1]
+
+        const myComponentStyle = {
+          color: 'blue',
+          position: 'absolute',
+          top: `${x}`,
+          left: `${y}`,
+         }
+
+        }
+          return (
+            <div className={"tag-div"} key={entry + 100} style={myComponentStyle}  >
+            Where is this label
+          </div>
+          )})}
+     */
+          }
       <map name="testmap">
         {facecoodinates.map(function (entry, index) {
           return (
-            <area
-              shape="circle"
-              coords={entry}
-              tabIndex="0"
-              alt={index}
-              onClick={tagFace}
-              key={entry}
-              data-id-number="0"
-            />
+            <div key={entry + 1000} className={'card-div'}>
+              <area
+                shape="circle"
+                coords={entry}
+                tabIndex="0"
+                alt={index}
+                onClick={tagFace}
+                key={entry}
+                data-id-number="0"
+              />
+            </div>
           );
         })}
       </map>
-      <img src={photo} alt="Solvay Conference" useMap="#testmap" />
+      
     </div>
   );
 }

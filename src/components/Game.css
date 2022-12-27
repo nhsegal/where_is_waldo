@@ -1,5 +1,25 @@
-area{
+.container {
+  position: relative;
+}
+
+area {
   display: block;
-  border: pink 3px solid;
-  background: red;
+}
+
+.tag-div{
+  position: absolute;
+  border: solid 5px black;
+
+}
+
+img {
+  top: 0;
+  right: 0;
+}
+
+.test-label {
+  position: absolute;
+  color: red;
+  top: 200px;
+  left: 300px;
 }
