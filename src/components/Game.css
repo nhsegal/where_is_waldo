@@ -4,6 +4,7 @@
 
 area {
   display: block;
+  cursor: pointer;
 }
 
 .tag-div{
