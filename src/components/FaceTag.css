@@ -1,0 +1,9 @@
+.unselected {
+  display: none;
+}
+
+.selected {
+  display: block;
+  background-color: "transparent";
+}
+

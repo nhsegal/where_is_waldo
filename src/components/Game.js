@@ -1,7 +1,6 @@
-import React,  { useRef } from "react";
+import React, { useRef } from "react";
 import photo from "../imgs/solvayphoto.jpeg";
-import FaceLabel from "./FaceLabel";
-import ListOfNames from "./ListOfNames";
+import FaceTag from "./FaceTag";
 import "./Game.css";
 
 const photoKey = [
@@ -126,41 +125,34 @@ const photoKey = [
 ];
 
 function Game() {
-  const menuToDisplay = useRef(null);
+  const isSelected = useRef([]);
 
-
-  const tagFace = (ev) => {
-    menuToDisplay.current= ev.target.coords;
-    console.log( menuToDisplay.current);
+  const displayMenu = (i) => {
+    isSelected.current[i].firstChild.focus();
+    isSelected.current[i].classList.add('selected');
+    console.log( isSelected.current[i])
   };
 
   return (
     <div className={"container"}>
-      {photoKey.map(function (entry, index) {
-        let x = entry.coordinates.split(",")[0];
-        let y = entry.coordinates.split(",")[1];
-        return (
-          <ListOfNames
-            className={"tag-div"}
-            key={entry.coordinates + 100}
-            x = {x} y ={y}
-            name= {entry.name}>
-          </ListOfNames>
-        );
-      })}
-
-      <img src={photo} alt="Solvay Conference" useMap="#testmap" />
-
       <map name="testmap">
         {photoKey.map(function (entry, index) {
+          let x = entry.coordinates.split(",")[0];
+          let y = entry.coordinates.split(",")[1];
           return (
-            <div key={entry.coordinates + 1000} className={"card-div"}>
+            <div key={entry.coordinates + 100}>
+              <FaceTag
+                className={"tag-div"}
+                ref={el => isSelected.current[index] = el} 
+                x={x}
+                y={y}
+                name={entry.name}/>
               <area
                 shape="circle"
                 coords={entry.coordinates}
                 tabIndex="0"
                 alt={index}
-                onClick={tagFace}
+                onClick={ () => displayMenu(index)}
                 key={entry}
                 data-name={entry.name}
               />
@@ -168,6 +160,7 @@ function Game() {
           );
         })}
       </map>
+      <img src={photo} alt="Solvay Conference" useMap="#testmap" />
     </div>
   );
 }
