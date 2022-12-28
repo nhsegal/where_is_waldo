@@ -128,10 +128,13 @@ function Game() {
   const isSelected = useRef([]);
 
   const displayMenu = (i) => {
+    isSelected.current.forEach( (ent,ind,arr)=> {
+      arr[ind].classList.add('unselected');
+      arr[ind].classList.remove('selected');
+    })
     isSelected.current[i].firstChild.focus();
     isSelected.current[i].classList.add('selected');
     isSelected.current[i].classList.remove('unselected');
-    console.log( isSelected.current[i])
   };
 
   return (

@@ -1,11 +1,14 @@
-import React, { forwardRef } from "react";
-import styled from "styled-components";
+import React, { forwardRef, useState } from "react";
 import "./FaceTag.css";
-import StyledDropDown from "./StyledDropDown";
+import {StyledDropDown, DropDownResult} from "./Styled";
 
 const FaceTag = forwardRef(function FaceTag(props, ref) {
 
-  
+  const [selectValue, setSelectValue] = useState("");
+  const onChange = (event) => {
+    const value = event.target.value;
+    setSelectValue(value);
+  }
   
   const listStyle = {
     top: `${props.y - 50}px`,
@@ -52,10 +55,9 @@ const FaceTag = forwardRef(function FaceTag(props, ref) {
   ];
 
   return (
-    
+    <>
     <StyledDropDown 
     ref={ref} 
-    onFocus={()=>console.log('focused')} 
     tabIndex={0}   
     makeVisible = {ref}  
     name={'nameList'} 
@@ -64,6 +66,7 @@ const FaceTag = forwardRef(function FaceTag(props, ref) {
     y={props.y}
     >
       <select
+        onBlur={ onChange}
         ref={ref}
         id="nameList"
         name="nameList"
@@ -71,14 +74,15 @@ const FaceTag = forwardRef(function FaceTag(props, ref) {
         <option value="" defaultValue>
           {" "}
         </option>
-
         {arrayOfNames.map((entry, index) => (
-          <option value={`entry`} key={entry}>
+          <option value={entry} key={entry}>
             {entry}
           </option>
         ))}
       </select>
     </StyledDropDown  >
+   <DropDownResult x={props.x} y={props.y}>{selectValue}</DropDownResult>
+      </>
   );
 });
 export default FaceTag;
