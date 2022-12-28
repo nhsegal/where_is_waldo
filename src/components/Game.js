@@ -1,7 +1,7 @@
-import React from "react";
+import React,  { useRef } from "react";
 import photo from "../imgs/solvayphoto.jpeg";
 import FaceLabel from "./FaceLabel";
-import ListOfNames from "./ListofNames";
+import ListOfNames from "./ListOfNames";
 import "./Game.css";
 
 const photoKey = [
@@ -41,6 +41,7 @@ const photoKey = [
     coordinates: "1260,170,40",
     name: "Werner Heisenberg",
   },
+  //-----------
   {
     coordinates: "1338,130,40",
     name: "Ralph Howard Fowler",
@@ -125,8 +126,12 @@ const photoKey = [
 ];
 
 function Game() {
+  const menuToDisplay = useRef(null);
+
+
   const tagFace = (ev) => {
-    console.log(ev.target);
+    menuToDisplay.current= ev.target.coords;
+    console.log( menuToDisplay.current);
   };
 
   return (
