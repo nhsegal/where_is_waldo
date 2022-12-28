@@ -53,10 +53,18 @@ const FaceTag = forwardRef(function FaceTag(props, ref) {
 
   return (
     
-    <form ref={ref} onFocus={()=>console.log('focused')} tabIndex={0}   makeVisible = {ref}  name={'nameList'} className={'unselected'}>
+    <StyledDropDown 
+    ref={ref} 
+    onFocus={()=>console.log('focused')} 
+    tabIndex={0}   
+    makeVisible = {ref}  
+    name={'nameList'} 
+    className={'unselected'}
+    x={props.x}
+    y={props.y}
+    >
       <select
         ref={ref}
-        style={listStyle}
         id="nameList"
         name="nameList"
         data-coord={`${props.x},${props.y},40`}>
@@ -70,7 +78,7 @@ const FaceTag = forwardRef(function FaceTag(props, ref) {
           </option>
         ))}
       </select>
-    </form >
+    </StyledDropDown  >
   );
 });
 export default FaceTag;

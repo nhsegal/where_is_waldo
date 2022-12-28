@@ -130,6 +130,7 @@ function Game() {
   const displayMenu = (i) => {
     isSelected.current[i].firstChild.focus();
     isSelected.current[i].classList.add('selected');
+    isSelected.current[i].classList.remove('unselected');
     console.log( isSelected.current[i])
   };
 

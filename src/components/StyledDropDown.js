@@ -9,7 +9,17 @@ const StyledDropDown = styled.form`
     color: white;
     background: rgba(10,10,10,.1);
     border: none;
-    display: ${props => props.makeVisible ? "block" : "none"}
+    .selected {
+        display: block;
+        color: white;
+    }
+    .unselected {
+        display: none;
+    }
+    &&:first-child{
+        color: inherit;
+
+    }
 `;
 
 export default StyledDropDown
