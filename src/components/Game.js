@@ -1,5 +1,7 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import photo from "../imgs/solvayphoto.jpeg";
+import {  collection, addDoc, query, getDocs, QuerySnapshot, doc  } from "firebase/firestore"
+import { app, database } from '../firebase'
 import FaceTag from "./FaceTag";
 import "./Game.css";
 
@@ -127,6 +129,27 @@ const photoKey = [
 function Game() {
   const isSelected = useRef([]);
 
+  useEffect(()=>{
+    const fetchData = async () => {
+      const data = await getDocs(collection(database, "entries"));
+      //console.log(data)
+      return data.docs
+    }
+  
+    fetchData().then( (e) => e.forEach(doc=>console.log(doc.data().entry))).catch(console.error);
+    
+  }, [])
+
+  /*
+  const handleSubmit = (ev) => {
+    ev.preventDefault()
+    //reference.push(myInput)
+    console.log(myInput.current.value)
+    addDoc(collection(database, "entries"), {
+      entry: `${myInput.current.value}`,
+    });
+  }
+*/
   const displayMenu = (i) => {
     isSelected.current.forEach( (ent,ind,arr)=> {
       arr[ind].classList.add('unselected');
