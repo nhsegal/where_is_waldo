@@ -14,6 +14,8 @@ const menuRef = createRef()
 
 function Game() {
   const [menuPosition, setMenuPosition] = useState({x:0, y:0})
+  const [menuView, setMenuView] = useState('none')
+  const [menuOption, setMenuOption] = useState('')
 /*
   const isSelected = useRef([]);
   useEffect(()=>{
@@ -34,6 +36,10 @@ function Game() {
     x: event.pageX,
     y: event.pageY
    })
+   
+   setMenuView('flex');
+
+   setMenuOption('')
     
   };
 
@@ -46,7 +52,7 @@ function Game() {
 
       </div>
       <img src={photo} alt="Waldo at the beach" onClick={displayMenu} className='background-img'/>
-      <DropdownForLabeling menuPosition = {menuPosition}></DropdownForLabeling>
+      <DropdownForLabeling menuPosition = {menuPosition} menuView={menuView} menuOption={menuOption}></DropdownForLabeling>
     </div>
   );
 }
