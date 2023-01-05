@@ -26,7 +26,10 @@ const DropDownResult = styled.div`
   left: ${(props) => (props.x ? `${props.x - 50}px` : "0px")};
   position: absolute;
   width: auto;
-  color: yellow;
+  color: rgb(250,250,150);
+  font-family: Arial;  
+  font-size: 13.5px;
+  padding: 2px 4px;
 `;
 
 export { StyledDropDown, DropDownResult };

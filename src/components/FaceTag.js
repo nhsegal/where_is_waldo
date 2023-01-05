@@ -3,10 +3,11 @@ import "./FaceTag.css";
 import {StyledDropDown, DropDownResult} from "./Styled";
 
 const FaceTag = forwardRef(function FaceTag(props, ref) {
-
   const [selectValue, setSelectValue] = useState("");
   const onChange = (event) => {
     const value = event.target.value;
+    event.target.classList.remove('selected');
+    event.target.classList.add('unselected');
     setSelectValue(value);
   }
   
@@ -23,35 +24,9 @@ const FaceTag = forwardRef(function FaceTag(props, ref) {
 
 
   const arrayOfNames = [
-    "Niels Bohr",
-    "Max Born",
-    "William Lawrence Bragg",
-    "Léon Brillouin",
-    "Louis de Broglie",
-    "Arthur Compton",
-    "Marie Curie",
-    "Peter Debye",
-    "Paul Dirac",
-    "Théophile de Donder",
-    "Paul Ehrenfest",
-    "Albert Einstein",
-    "Ralph Howard Fowler",
-    "Charles-Eugène Guye",
-    "Werner Heisenberg",
-    "Émile Henriot",
-    "Édouard Herzen",
-    "Hendrik Anthony Kramers",
-    "Martin Knudsen",
-    "Paul Langevin",
-    "Irving Langmuir",
-    "Hendrik Lorentz",
-    "Wolfgang Pauli",
-    "Auguste Piccard",
-    "Max Planck",
-    "Owen Willans Richardson",
-    "Erwin Schrödinger",
-    "Charles Thomson Rees Wilson",
-    "Jules-Émile Verschaffelt",
+    "Waldo",
+    "Odlaw",
+    "The Wizard",
   ];
 
   return (
@@ -66,7 +41,7 @@ const FaceTag = forwardRef(function FaceTag(props, ref) {
     y={props.y}
     >
       <select
-        onBlur={ onChange}
+        onBlur={ onChange }
         ref={ref}
         id="nameList"
         name="nameList"
