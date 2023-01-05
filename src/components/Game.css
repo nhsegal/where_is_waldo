@@ -1,37 +1,21 @@
+body {
+  margin: 0;
+}
 .container {
   position: relative;
 }
 
-area {
-  display: block;
-  cursor: pointer;
-}
-
-.tag-div{
-  position: absolute;
-  color: white;
-}
-
-img {
+.backgrond-img {
   top: 0;
   right: 0;
 }
 
-.test-label {
-  position: absolute;
-  color: red;
-  top: 200px;
-  left: 300px;
-}
-
 .headers {
   position: fixed;
-  top: 25px;
-  left: 650px;
   font-size: 2rem;
   color: black;
   display: flex;
-  justify-content: center;
-  gap: 6rem;
-  background-color: white;
+  justify-content: space-around;
+  gap: 14rem;
+  width: 100%;
 }

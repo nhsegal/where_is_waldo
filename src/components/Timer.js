@@ -1,13 +1,11 @@
 import React, { useState, useEffect }  from 'react';
+import "./Timer.css";
 
-let seconds;
-let minutes;
+const start = Date.now();
 
 const Timer = () => {
   const [time, setTime] = useState(Date.now());
-  console.log(time)
-
-
+ 
   useEffect(()=> {
     const interval = setInterval(
       () => setTime(Date.now())
@@ -15,10 +13,17 @@ const Timer = () => {
     return () => clearInterval(interval);
   }, []);
 
+  let seconds = (Math.floor((time-start)/1000)%60).toString();
+  if (seconds.length<2) {
+    seconds= '0'+seconds
+    console.log(seconds)
+   
+  }
+ 
   return (
     <div className='timer'>
       {
-       `${Math.floor(time/1000/60)%60}:${Math.floor(time/1000)%60}`.padStart(2,"0")
+       `${Math.floor((time-start)/1000/60)%60}:${seconds}`
       } 
     </div>
   )

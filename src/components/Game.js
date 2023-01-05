@@ -1,13 +1,19 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, createRef } from "react";
 import photo from "../imgs/where_is_waldo.jpeg";
+
+
+
 //import {  collection, addDoc, query, getDocs, QuerySnapshot, doc  } from "firebase/firestore"
 //import { app, database } from '../firebase'
-//import FaceTag from "./FaceTag";
+import DropdownForLabeling from "./DropdownForLabeling";
 import "./Game.css";
 import Timer from "./Timer";
+import CharacterKey from "./CharacterKey";
 
+const menuRef = createRef()
 
 function Game() {
+  const [menuPosition, setMenuPosition] = useState({x:0, y:0})
 /*
   const isSelected = useRef([]);
   useEffect(()=>{
@@ -22,30 +28,25 @@ function Game() {
   }, [])
 
 */
-  const displayMenu = (event) => {
-    console.log(event.target)
-    console.log(event.pageX)
+  const displayMenu = (event) => {   
 
-
-    /*
-    isSelected.current.forEach( (ent,ind,arr)=> {
-      arr[ind].classList.add('unselected');
-      arr[ind].classList.remove('selected');
-    })
-    isSelected.current[i].firstChild.focus();
-    isSelected.current[i].classList.add('selected');
-    isSelected.current[i].classList.remove('unselected');
-    */
+   setMenuPosition({
+    x: event.pageX,
+    y: event.pageY
+   })
+    
   };
 
   return (
-    <div className={"container"}>
-      <div className='headers'>
-       <div>Score: </div>  
-       <div>Time: </div>   
-       <Timer></Timer>   
+    <div className="container">
+      <div className='headers'> 
+      <CharacterKey></CharacterKey> 
+      <button>Exit Game</button>
+       <Timer></Timer>  
+
       </div>
-      <img src={photo} alt="Waldo at the beach" onClick={displayMenu} />
+      <img src={photo} alt="Waldo at the beach" onClick={displayMenu} className='background-img'/>
+      <DropdownForLabeling menuPosition = {menuPosition}></DropdownForLabeling>
     </div>
   );
 }

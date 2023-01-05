@@ -1,0 +1,6 @@
+.target-box{
+  border: 3px black solid;
+  height: 2.5rem;
+  width: 2rem;
+  border-radius: 10px;
+}

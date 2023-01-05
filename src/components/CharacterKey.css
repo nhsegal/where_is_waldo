@@ -1,0 +1,11 @@
+.character-key {
+  display: flex;
+  gap: 5px;
+}
+
+.character-key-img {
+  height: 3rem;
+  width: auto;
+  border: 3px solid black;
+}
+
