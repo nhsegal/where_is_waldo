@@ -1,46 +1,49 @@
-import React, { useState, useEffect, useRef, createRef }  from 'react';
-import './DropdownForLabeling.css'
-import Select from 'react-select'
-
-/*
-Import react select and use Select
-then reset the select
-
-*/
-
+import React, { useState, useEffect, useRef, createRef } from "react";
+import "./DropdownForLabeling.css";
+import Select from "react-select";
 
 const DropdownForLabeling = (props) => {
-  //let myRef = createRef();
+  let selectRef = createRef();
+
   const listStyle = {
-    position: 'absolute',
-    top: `${props.menuPosition.y-20}px`,
-    left: `${props.menuPosition.x-20}px`,
-    display: `${props.menuView}`
-  }
+    position: "absolute",
+    top: `${props.menuPosition.y - 20}px`,
+    left: `${props.menuPosition.x - 20}px`,
+    display: `${props.menuView}`,
+  };
 
   const options = [
-    { value: '', label: ''},
-    { value: 'waldo', label: 'Waldo'},
-    { value: 'odlaw', label: 'Odlaw'},
-    { value: 'wizard', label: 'Wizard'},
-    
-  ]
- 
+    { value: "waldo", label: "Waldo" },
+    { value: "odlaw", label: "Odlaw" },
+    { value: "wizard", label: "Wizard" },
+  ];
 
+  const [selected, setSelected] = useState("");
+
+  const handleChange = (event) => {
+    console.log(event?.value);
+    setSelected(event);
+  };
+
+  useEffect(() => {
+    selectRef.current.setValue(null);
+  }, [props.menuPosition]);
 
   return (
-    <div className='dropdown-container'  style={listStyle}>
-   <div className='target-box'></div>
-     <Select 
-    //  ref ={myRef}
-      className='icon-menu' 
-      id='characters' 
-      name='characters'
-      options = {options}
+    <div className="dropdown-container" style={listStyle}>
+      <div className="target-box"></div>
+      <Select
+        ref={selectRef}
+        onChange={handleChange}
+        className="icon-menu"
+        id="characters"
+        name="characters"
+        options={options}
+        //inputValue = {selected}
+        defaultValue={null}
       />
     </div>
-   
-  )
-}
+  );
+};
 
-export default DropdownForLabeling
+export default DropdownForLabeling;

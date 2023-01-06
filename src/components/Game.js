@@ -1,58 +1,85 @@
 import React, { useRef, useState, useEffect, createRef } from "react";
 import photo from "../imgs/where_is_waldo.jpeg";
 
-
-
-//import {  collection, addDoc, query, getDocs, QuerySnapshot, doc  } from "firebase/firestore"
-//import { app, database } from '../firebase'
+import {
+  collection,
+  addDoc,
+  query,
+  getDocs,
+  QuerySnapshot,
+  doc,
+} from "firebase/firestore";
+import { app, database } from "../firebase";
 import DropdownForLabeling from "./DropdownForLabeling";
 import "./Game.css";
 import Timer from "./Timer";
 import CharacterKey from "./CharacterKey";
 
-const menuRef = createRef()
+const menuRef = createRef();
+const winningInfo = []
+
 
 function Game() {
-  const [menuPosition, setMenuPosition] = useState({x:0, y:0})
-  const [menuView, setMenuView] = useState('none')
-  const [menuOption, setMenuOption] = useState('')
-/*
-  const isSelected = useRef([]);
-  useEffect(()=>{
-    const fetchData = async () => {
-      const data = await getDocs(collection(database, "entries"));
-      console.log(data)
-      return data.docs
-    }
+  const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
+  const [menuView, setMenuView] = useState("none");
+  const [menuOption, setMenuOption] = useState("");
   
-    fetchData().then( (e) => e.forEach(doc=>console.log(doc.data().entry))).catch(console.error);
-    
-  }, [])
 
-*/
-  const displayMenu = (event) => {   
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getDocs(collection(database, "waldoKey"));
+      return data.docs;
+    };
 
-   setMenuPosition({
-    x: event.pageX,
-    y: event.pageY
-   })
-   
-   setMenuView('flex');
+    fetchData().then((docs) =>
+      docs.forEach((doc) => {
+        if (doc.data().Name === "waldo") {
+          console.log("here");
+        }
+        winningInfo.push(doc.data())
+        console.log(doc.data());
+      })
+    );
+  }, []);
 
-   setMenuOption('')
-    
+  const displayMenu = (event) => {
+    console.log(
+     winningInfo
+    );
+
+    setMenuPosition({
+      x: event.pageX,
+      y: event.pageY,
+    });
+
+    setMenuView("flex");
+
+    setMenuOption("");
   };
+
+  const checkForSuccess = (e) => {
+    winningInfo.forEach(
+      
+     )
+  }
 
   return (
     <div className="container">
-      <div className='headers'> 
-      <CharacterKey></CharacterKey> 
-      <button>Exit Game</button>
-       <Timer></Timer>  
-
+      <div className="headers">
+        <CharacterKey></CharacterKey>
+        <button>Exit Game</button>
+        <Timer></Timer>
       </div>
-      <img src={photo} alt="Waldo at the beach" onClick={displayMenu} className='background-img'/>
-      <DropdownForLabeling menuPosition = {menuPosition} menuView={menuView} menuOption={menuOption}></DropdownForLabeling>
+      <img
+        src={photo}
+        alt="Waldo at the beach"
+        onClick={displayMenu}
+        className="background-img"
+      />
+      <DropdownForLabeling
+        menuPosition={menuPosition}
+        menuView={menuView}
+        menuOption={menuOption}></DropdownForLabeling>
     </div>
   );
 }

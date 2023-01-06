@@ -16,7 +16,6 @@ const Timer = () => {
   let seconds = (Math.floor((time-start)/1000)%60).toString();
   if (seconds.length<2) {
     seconds= '0'+seconds
-    console.log(seconds)
    
   }
  
