@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef, createRef } from "react";
 import "./DropdownForLabeling.css";
 import Select from "react-select";
+import { checkForOdlaw, checkForWaldo, checkForWizard } from "../helpers/checkForSuccess";
+
 
 const DropdownForLabeling = (props) => {
   let selectRef = createRef();
-
   const listStyle = {
     position: "absolute",
     top: `${props.menuPosition.y - 20}px`,
@@ -12,17 +13,41 @@ const DropdownForLabeling = (props) => {
     display: `${props.menuView}`,
   };
 
-  const options = [
-    { value: "waldo", label: "Waldo" },
-    { value: "odlaw", label: "Odlaw" },
-    { value: "wizard", label: "Wizard" },
-  ];
+  const [options, setOptions] = useState([      
+    { value: "waldo", label: "Waldo", disabled: false },
+    { value: "odlaw", label: "Odlaw", disabled: false },
+    { value: "wizard", label: "Wizard", disabled: false },
+  ]);
 
-  const [selected, setSelected] = useState("");
+  const dataFromFirebase = props.targetInfo
+  console.log('datafromfirebase')
+  console.log(dataFromFirebase)
 
-  const handleChange = (event) => {
-    console.log(event?.value);
-    setSelected(event);
+  const handleChange = (selectedOption) => {
+    if (selectedOption){
+      if (selectedOption.value === 'waldo') {
+        if (checkForWaldo(props.menuPosition.x, props.menuPosition.y, dataFromFirebase) ){
+          props.setGameState({waldoFound: true, odlawFound: props.gameState.odLawFound, wizardFound: props.gameState.wizardFound})
+          setOptions([ { value: "waldo", label: "Waldo", disabled: true }, options[1], options[2]])
+        }
+        return 
+      }
+      if (selectedOption.value === 'odlaw') {
+        if (checkForOdlaw(props.menuPosition.x, props.menuPosition.y, dataFromFirebase) ){
+          props.setGameState({waldoFound: props.gameState.waldoFound, odlawFound: true, wizardFound: props.gameState.wizardFound})
+          setOptions([ options[0], { value: "odlaw", label: "Odlaw", disabled: true }, options[2]])
+        
+        }
+        return
+      }
+      if (selectedOption.value === 'wizard') {
+        if (checkForWizard(props.menuPosition.x, props.menuPosition.y, dataFromFirebase) ){
+          props.setGameState({waldoFound: props.gameState.waldoFound, odlawFound: props.gameState.odLawFound, wizardFound: true})
+          setOptions([ options[0], options[1],{ value: "wizard", label: "Wizard", disabled: true },])
+        }
+        return
+      }
+    }
   };
 
   useEffect(() => {
@@ -32,6 +57,7 @@ const DropdownForLabeling = (props) => {
   return (
     <div className="dropdown-container" style={listStyle}>
       <div className="target-box"></div>
+      <div style={{width: '140px'}}>
       <Select
         ref={selectRef}
         onChange={handleChange}
@@ -39,9 +65,10 @@ const DropdownForLabeling = (props) => {
         id="characters"
         name="characters"
         options={options}
-        //inputValue = {selected}
         defaultValue={null}
+        isOptionDisabled={(option) => option.disabled}
       />
+      </div>
     </div>
   );
 };

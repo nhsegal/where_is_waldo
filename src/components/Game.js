@@ -1,29 +1,25 @@
-import React, { useRef, useState, useEffect, createRef } from "react";
-import photo from "../imgs/where_is_waldo.jpeg";
-
-import {
-  collection,
-  addDoc,
-  query,
-  getDocs,
-  QuerySnapshot,
-  doc,
-} from "firebase/firestore";
-import { app, database } from "../firebase";
-import DropdownForLabeling from "./DropdownForLabeling";
+import backgroundImg from "../imgs/where_is_waldo.jpeg";
 import "./Game.css";
+import { checkForWin } from "../helpers/checkForSuccess";
+import DropdownForLabeling from "./DropdownForLabeling";
+import React, { useState, useEffect } from "react";
 import Timer from "./Timer";
+
+import { collection, getDocs } from "firebase/firestore";
+import { app, database } from "../firebase";
 import CharacterKey from "./CharacterKey";
 
-const menuRef = createRef();
-const winningInfo = []
-
-
 function Game() {
+  const [gameState, setGameState] = useState({
+    waldoFound: false,
+    odlawFound: false,
+    wizardFound: false,
+  });
+
   const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
   const [menuView, setMenuView] = useState("none");
   const [menuOption, setMenuOption] = useState("");
-  
+  const [targetInfo, updateTargetInfo] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,37 +27,26 @@ function Game() {
       return data.docs;
     };
 
-    fetchData().then((docs) =>
-      docs.forEach((doc) => {
-        if (doc.data().Name === "waldo") {
-          console.log("here");
-        }
-        winningInfo.push(doc.data())
-        console.log(doc.data());
-      })
-    );
+    fetchData().then((docs) => {
+        docs.forEach((doc) => {
+          updateTargetInfo((targetInfo)=> [...targetInfo, doc.data()])
+        });
+    });
   }, []);
 
   const displayMenu = (event) => {
-    console.log(
-     winningInfo
-    );
-
     setMenuPosition({
       x: event.pageX,
       y: event.pageY,
     });
-
     setMenuView("flex");
-
-    setMenuOption("");
   };
 
-  const checkForSuccess = (e) => {
-    winningInfo.forEach(
-      
-     )
-  }
+  useEffect(() => {
+    if (checkForWin(gameState)) {
+      console.log("GAME OVER");
+    }
+  }, [gameState]);
 
   return (
     <div className="container">
@@ -71,7 +56,7 @@ function Game() {
         <Timer></Timer>
       </div>
       <img
-        src={photo}
+        src={backgroundImg}
         alt="Waldo at the beach"
         onClick={displayMenu}
         className="background-img"
@@ -79,7 +64,11 @@ function Game() {
       <DropdownForLabeling
         menuPosition={menuPosition}
         menuView={menuView}
-        menuOption={menuOption}></DropdownForLabeling>
+        menuOption={menuOption}
+        setMenuOption={setMenuOption}
+        setGameState={setGameState}
+        gameState={gameState}
+        targetInfo={targetInfo}></DropdownForLabeling>
     </div>
   );
 }
