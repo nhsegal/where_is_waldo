@@ -18,7 +18,7 @@ function Game() {
   const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
   const [menuView, setMenuView] = useState("none");
   const [menuOption, setMenuOption] = useState("");
-  const [targetInfo, updateTargetInfo] = useState([]);
+  const [targetInfo, setTargetInfo] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,7 +28,7 @@ function Game() {
 
     fetchData().then((docs) => {
       docs.forEach((doc) => {
-        updateTargetInfo((targetInfo) => [...targetInfo, doc.data()]);
+        setTargetInfo((targetInfo) => [...targetInfo, doc.data()]);
       });
     });
   }, []);
