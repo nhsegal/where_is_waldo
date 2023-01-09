@@ -58,7 +58,7 @@ function Game() {
       <div className="headers">
         <CharacterKey   gameState={gameState}></CharacterKey>
         <button>Exit Game</button>
-        <Stopwatch></Stopwatch>
+        <Stopwatch gameState = {gameState}></Stopwatch>
       </div>
       <img
         src={backgroundImg}

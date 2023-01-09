@@ -6,8 +6,6 @@ import "./CharacterKey.css";
 
 const CharacterKey = (props) => {
   const gameState = props.gameState;
-  console.log(gameState)
-  console.log('charkey rendered')
 
   return (
     <div className='character-key'>
