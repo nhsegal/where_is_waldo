@@ -9,3 +9,12 @@
   border: 3px solid black;
 }
 
+.found {
+  height: 3rem;
+  width: auto;
+  border: 3px solid black;
+  opacity: .6;
+  background-color: black;
+  background-color: rgba(200,100,0,.5);
+  background-blend-mode: multiply;
+}

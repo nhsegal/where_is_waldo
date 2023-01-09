@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useRef, createRef } from "react";
+import React, { useState, useEffect, createRef } from "react";
 import "./DropdownForLabeling.css";
 import Select from "react-select";
 import { checkForOdlaw, checkForWaldo, checkForWizard } from "../helpers/checkForSuccess";
-
 
 const DropdownForLabeling = (props) => {
   let selectRef = createRef();
@@ -27,7 +26,7 @@ const DropdownForLabeling = (props) => {
     if (selectedOption){
       if (selectedOption.value === 'waldo') {
         if (checkForWaldo(props.menuPosition.x, props.menuPosition.y, dataFromFirebase) ){
-          props.setGameState({waldoFound: true, odlawFound: props.gameState.odLawFound, wizardFound: props.gameState.wizardFound})
+          props.setGameState({waldoFound: true, odlawFound: props.gameState.odlawFound, wizardFound: props.gameState.wizardFound})
           setOptions([ { value: "waldo", label: "Waldo", disabled: true }, options[1], options[2]])
         }
         return 
@@ -36,13 +35,12 @@ const DropdownForLabeling = (props) => {
         if (checkForOdlaw(props.menuPosition.x, props.menuPosition.y, dataFromFirebase) ){
           props.setGameState({waldoFound: props.gameState.waldoFound, odlawFound: true, wizardFound: props.gameState.wizardFound})
           setOptions([ options[0], { value: "odlaw", label: "Odlaw", disabled: true }, options[2]])
-        
         }
         return
       }
       if (selectedOption.value === 'wizard') {
         if (checkForWizard(props.menuPosition.x, props.menuPosition.y, dataFromFirebase) ){
-          props.setGameState({waldoFound: props.gameState.waldoFound, odlawFound: props.gameState.odLawFound, wizardFound: true})
+          props.setGameState({waldoFound: props.gameState.waldoFound, odlawFound: props.gameState.odlawFound, wizardFound: true})
           setOptions([ options[0], options[1],{ value: "wizard", label: "Wizard", disabled: true },])
         }
         return

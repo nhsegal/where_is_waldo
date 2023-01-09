@@ -1,10 +1,9 @@
 import backgroundImg from "../imgs/where_is_waldo.jpeg";
 import "./Game.css";
-import { checkForWin } from "../helpers/checkForSuccess";
+import { checkForWaldo, checkForWin } from "../helpers/checkForSuccess";
 import DropdownForLabeling from "./DropdownForLabeling";
 import React, { useState, useEffect } from "react";
-import Timer from "./Timer";
-
+import Stopwatch from "./Stopwatch";
 import { collection, getDocs } from "firebase/firestore";
 import { app, database } from "../firebase";
 import CharacterKey from "./CharacterKey";
@@ -28,9 +27,9 @@ function Game() {
     };
 
     fetchData().then((docs) => {
-        docs.forEach((doc) => {
-          updateTargetInfo((targetInfo)=> [...targetInfo, doc.data()])
-        });
+      docs.forEach((doc) => {
+        updateTargetInfo((targetInfo) => [...targetInfo, doc.data()]);
+      });
     });
   }, []);
 
@@ -46,14 +45,20 @@ function Game() {
     if (checkForWin(gameState)) {
       console.log("GAME OVER");
     }
+
+    if (checkForWaldo) {
+      
+    }
   }, [gameState]);
+
+
 
   return (
     <div className="container">
       <div className="headers">
-        <CharacterKey></CharacterKey>
+        <CharacterKey   gameState={gameState}></CharacterKey>
         <button>Exit Game</button>
-        <Timer></Timer>
+        <Stopwatch></Stopwatch>
       </div>
       <img
         src={backgroundImg}
