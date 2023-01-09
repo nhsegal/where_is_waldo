@@ -4,17 +4,20 @@
 }
 
 .character-key-img {
-  height: 3rem;
+  box-sizing: border-box;
+  height: 3.5rem;
   width: auto;
   border: 3px solid black;
 }
 
 .found {
-  height: 3rem;
+  box-sizing: border-box;
+  height: 3.5rem;
+  position: relative;
   width: auto;
-  border: 3px solid black;
-  opacity: .6;
-  background-color: black;
-  background-color: rgba(200,100,0,.5);
-  background-blend-mode: multiply;
-}
+  border: 1.75rem solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} 
+

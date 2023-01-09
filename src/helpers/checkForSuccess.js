@@ -1,7 +1,7 @@
 const checkForWaldo = (x, y, data) => {
   console.log('you selected waldo');
   const waldoInfo = data.filter((e)=> e.Name === 'waldo')[0]
-  if (x < waldoInfo.x + 10 && x > waldoInfo.x - 10 && y < waldoInfo.y + 35 && y > waldoInfo.y - 10) {
+  if (x < waldoInfo.x + 10 && x > waldoInfo.x - 10 && y < waldoInfo.y + 30 && y > waldoInfo.y - 15) {
     console.log("waldo!")
     return true
   }
