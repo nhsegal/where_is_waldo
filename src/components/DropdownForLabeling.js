@@ -19,8 +19,8 @@ const DropdownForLabeling = (props) => {
   ]);
 
   const dataFromFirebase = props.targetInfo
-  console.log('datafromfirebase')
-  console.log(dataFromFirebase)
+  //console.log('datafromfirebase')
+  //console.log(dataFromFirebase)
 
   const handleChange = (selectedOption) => {
     if (selectedOption){

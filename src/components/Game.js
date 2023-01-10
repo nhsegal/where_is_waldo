@@ -20,6 +20,7 @@ function Game() {
   const [menuOption, setMenuOption] = useState("");
   const [targetInfo, setTargetInfo] = useState([]);
 
+  // Get Waldo et al coordinates
   useEffect(() => {
     const fetchData = async () => {
       const data = await getDocs(collection(database, "waldoKey"));
@@ -33,6 +34,8 @@ function Game() {
     });
   }, []);
 
+  
+
   const displayMenu = (event) => {
     setMenuPosition({
       x: event.pageX,
@@ -44,10 +47,6 @@ function Game() {
   useEffect(() => {
     if (checkForWin(gameState)) {
       console.log("GAME OVER");
-    }
-
-    if (checkForWaldo) {
-      
     }
   }, [gameState]);
 
