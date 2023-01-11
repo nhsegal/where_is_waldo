@@ -1,6 +1,6 @@
 import backgroundImg from "../imgs/where_is_waldo.jpeg";
 import "./Game.css";
-import { checkForWaldo, checkForWin } from "../helpers/checkForSuccess";
+import { checkForWin } from "../helpers/checkForSuccess";
 import DropdownForLabeling from "./DropdownForLabeling";
 import React, { useState, useEffect } from "react";
 import Stopwatch from "./Stopwatch";
@@ -8,6 +8,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { app, database } from "../firebase";
 import CharacterKey from "./CharacterKey";
 import Marker from "./Marker";
+import Modal from "./Modal";
 
 
 function Game() {
@@ -86,6 +87,7 @@ function Game() {
         setGameState={setGameState}
         gameState={gameState}
         targetInfo={targetInfo}></DropdownForLabeling>
+        <Modal></Modal>
     </div>
   );
 }
