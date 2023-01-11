@@ -7,6 +7,8 @@ import Stopwatch from "./Stopwatch";
 import { collection, getDocs } from "firebase/firestore";
 import { app, database } from "../firebase";
 import CharacterKey from "./CharacterKey";
+import Marker from "./Marker";
+
 
 function Game() {
   const [gameState, setGameState] = useState({
@@ -65,6 +67,17 @@ function Game() {
         onClick={displayMenu}
         className="background-img"
       />
+       { (gameState.waldoFound) &&
+          <Marker markerPosition={menuPosition}></Marker>
+        }
+
+{ (gameState.odlawFound) &&
+          <Marker markerPosition={menuPosition}></Marker>
+        }
+        
+        { (gameState.wizardFound) &&
+          <Marker markerPosition={menuPosition}></Marker>
+        }
       <DropdownForLabeling
         menuPosition={menuPosition}
         menuView={menuView}

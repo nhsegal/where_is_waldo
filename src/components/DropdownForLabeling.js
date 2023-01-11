@@ -3,6 +3,7 @@ import "./DropdownForLabeling.css";
 import Select from "react-select";
 import { checkForOdlaw, checkForWaldo, checkForWizard } from "../helpers/checkForSuccess";
 
+
 const DropdownForLabeling = (props) => {
   let selectRef = createRef();
   const listStyle = {
@@ -19,8 +20,6 @@ const DropdownForLabeling = (props) => {
   ]);
 
   const dataFromFirebase = props.targetInfo
-  //console.log('datafromfirebase')
-  //console.log(dataFromFirebase)
 
   const handleChange = (selectedOption) => {
     if (selectedOption){
@@ -28,6 +27,7 @@ const DropdownForLabeling = (props) => {
         if (checkForWaldo(props.menuPosition.x, props.menuPosition.y, dataFromFirebase) ){
           props.setGameState({waldoFound: true, odlawFound: props.gameState.odlawFound, wizardFound: props.gameState.wizardFound})
           setOptions([ { value: "waldo", label: "Waldo", disabled: true }, options[1], options[2]])
+          
         }
         return 
       }
@@ -51,6 +51,10 @@ const DropdownForLabeling = (props) => {
   useEffect(() => {
     selectRef.current.setValue(null);
   }, [props.menuPosition]);
+
+  useEffect(()=>{
+
+  })
 
   return (
     <div className="dropdown-container" style={listStyle}>
