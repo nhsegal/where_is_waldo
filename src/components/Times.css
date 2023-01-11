@@ -2,6 +2,8 @@
   text-align: center;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .times h1 {
@@ -10,4 +12,26 @@
   font-size: 4rem;
   margin: 0;
   text-shadow: -2px -2px 0 #000, -2px -2px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+ol{
+  width: 12rem;
+  list-style: ;
+}
+
+li{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+li>div {
+  width: 6rem,
+}
+
+.name{
+  justify-self: left;
+  text-align: left;
+  margin-left: 2rem;
+  margin-right: auto;
 }

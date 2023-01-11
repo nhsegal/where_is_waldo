@@ -2,7 +2,7 @@ import React, {useState} from "react";
 
 
 const Marker = (props) => {
-  console.log(props)
+
 
   const [pos, setPos] = useState(props.markerPosition)
   const listStyle = {

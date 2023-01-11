@@ -24,17 +24,25 @@ const Times = (props) => {
   }
   
   useEffect(() => {
+
     const fetchData = async () => {
-      const data = await getDocs(collection(database, "bestTimes"));
-      setBestTimes(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      try{
+        const data = await getDocs(collection(database, "bestTimes"));
+        setBestTimes(data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+        .sort(compare).slice(0,5));
+        console.log(bestTimes)
+      }
+      catch(error){
+        console.error(error)
+      }
+     
+     
+     
+    
     };
 
-    const processData = async() => {
-      let sortedTimes = [...bestTimes].sort(compare).slice(0,5)
-      console.log(sortedTimes)
-      setBestTimes(sortedTimes)
-    }
-    fetchData().then(processData)
+ 
+    fetchData().catch((err)=>console.log(err))
 
   }, []);
 
@@ -44,9 +52,9 @@ const Times = (props) => {
         <span className="where">Best</span> <span className="waldo">Times</span>
       </h1>
       <ol>
-      { bestTimes.map((e) =>  {
+      { bestTimes.map((e,i) =>  {
         return (
-          <li key={e.id}>{e.name} {e.time}</li>
+          <li key={e.id}><div>{i+1}.</div> <div className="name">{e.name}</div> <div>{e.time}</div></li>
         )
       })
 
