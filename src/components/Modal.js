@@ -1,16 +1,36 @@
 import './Modal.css'
-import { Link } from 'react-router-dom'
+import { Form, Link } from 'react-router-dom'
 
 const Modal = (props) => {
   if (props.fast) {
+    const handleSubmit = (e) =>{
+      e.preventDefault();
+     const formData = new FormData(e.target)
+     for (const value of formData.values()) {
+      console.log(value);
+    }
+    }
     return (
       <div className = 'timeForm'>
         <h1>Congratulations!</h1>
         <div>You made the top five!</div>
         <div>Enter your name below:</div>
-        <form>
-        <input label='name'></input>
-        <button type='submit'>submit</button>
+            <form method="post" onSubmit={handleSubmit}>
+            <div>
+            <label>
+            Name:
+            <input type="text" name="name"></input>
+          </label>
+            </div>
+        <div>
+        <label>
+            Time:
+            <input type="text" name="time" value={props.endTime} className='timeInput'></input>
+          </label>
+        </div>
+        
+       
+        <button type='submit' >Submit</button>
         </form>
       </div>
     )

@@ -70,7 +70,7 @@ function Game(props) {
     <div className="container">
       <div className="headers">
         <CharacterKey   gameState={gameState}></CharacterKey>
-        <button>Exit Game</button>
+      
         <Stopwatch gameState = {gameState} setEndTime ={setEndTime}></Stopwatch>
       </div>
       <img
@@ -99,7 +99,7 @@ function Game(props) {
         gameState={gameState}
         targetInfo={targetInfo}></DropdownForLabeling>
       { checkForWin(gameState) &&
-        <Modal fast = {fast}></Modal>
+        <Modal fast = {fast} endTime={endTime}></Modal>
       }  
     </div>
   );
