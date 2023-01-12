@@ -29,7 +29,7 @@ function App() {
         const data = await getDocs(collection(database, "bestTimes"));
         setBestTimes(data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
         .sort(compare).slice(0,5));
-        console.log(bestTimes)
+ 
       }
       catch(error){
         console.error(error)

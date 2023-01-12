@@ -32,15 +32,21 @@ h1 {
 }
 
 input {
-  margin-top: 0.5rem;
+  margin-top: 0.2rem;
+  width: 9rem;
+  margin-left: 1rem;
 }
 
 .timeInput {
   border: none;
-  text-align: center;
+  font-size: 1.2rem;
+  width: 9rem;
 }
 
 button {
-  width: 9rem;
-  margin-top: 1rem;
+  width: 14rem;
+  margin-top: .4rem;
+  background-color: rgb(100,170,220);
+  border-radius: 5px;
+  height: 2rem;
 }
