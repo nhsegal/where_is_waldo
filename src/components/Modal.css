@@ -1,6 +1,7 @@
 .timeForm{
+  font-family: 'Optima';
   position: fixed;
-  top: 50vh;
+  top: 30vh;
   left: calc(50vw - 8rem);
   background: white;
   border: 1px solid black;
@@ -9,4 +10,26 @@
   padding: .8rem;
   text-align: center;
   border-radius: 20px;
+}
+
+.gameOver{
+  font-family: 'Optima';
+  position: fixed;
+  top: 30vh;
+  left: calc(50vw - 8rem);
+  background: white;
+  border: 1px solid black;
+  width: 16rem;
+  height: 7rem;
+  padding: .8rem;
+  text-align: center;
+  border-radius: 20px;
+}
+
+h1 {
+  margin-bottom: 0.5rem;
+}
+
+input {
+  margin-top: 0.5rem;
 }

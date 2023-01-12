@@ -10,7 +10,6 @@ import CharacterKey from "./CharacterKey";
 import Marker from "./Marker";
 import Modal from "./Modal";
 
-
 function Game() {
   const [gameState, setGameState] = useState({
     waldoFound: false,
@@ -37,7 +36,6 @@ function Game() {
     });
   }, []);
 
-  
 
   const displayMenu = (event) => {
     setMenuPosition({
@@ -87,7 +85,9 @@ function Game() {
         setGameState={setGameState}
         gameState={gameState}
         targetInfo={targetInfo}></DropdownForLabeling>
+      { checkForWin(gameState) &&
         <Modal></Modal>
+      }  
     </div>
   );
 }

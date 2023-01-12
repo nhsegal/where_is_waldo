@@ -35,13 +35,7 @@ const Times = (props) => {
       catch(error){
         console.error(error)
       }
-     
-     
-     
-    
     };
-
- 
     fetchData().catch((err)=>console.log(err))
 
   }, []);
