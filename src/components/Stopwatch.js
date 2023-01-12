@@ -5,6 +5,7 @@ import { checkForWin } from "../helpers/checkForSuccess";
 const Stopwatch = (props) => { 
   const [time, setTime] = useState(0);
   const [running, setRunning] = useState(true);
+
   useEffect(() => {
     let interval;
     if (running) {
@@ -19,11 +20,12 @@ const Stopwatch = (props) => {
 
   useEffect(()=> {
     if (checkForWin(props.gameState)){
-      setRunning(false)
+      setRunning(()=>false)
       const min = ("0" + Math.floor((time / 60000) % 60)).slice(-2);
       const sec = ("0" +  Math.floor((time / 1000) % 60)).slice(-2);
       const dec = ("0" + ((time / 10) % 100)).slice(-2);
-      console.log(`${min}:${sec}.${dec}`)
+      //console.log(`${min}:${sec}.${dec}`)
+      props.setEndTime(()=>`${min}:${sec}:${dec}`)
     }
 
   }, [props.gameState])

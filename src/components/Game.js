@@ -9,8 +9,9 @@ import { app, database } from "../firebase";
 import CharacterKey from "./CharacterKey";
 import Marker from "./Marker";
 import Modal from "./Modal";
+import timeToNumber from "../helpers/timeToNumber";
 
-function Game() {
+function Game(props) {
   const [gameState, setGameState] = useState({
     waldoFound: false,
     odlawFound: false,
@@ -21,6 +22,13 @@ function Game() {
   const [menuView, setMenuView] = useState("none");
   const [menuOption, setMenuOption] = useState("");
   const [targetInfo, setTargetInfo] = useState([]);
+  const [endTime, setEndTime] = useState(0);
+  const [fast, setFast] = useState(false)
+
+  const bestTimes = props.bestTimes
+
+
+ 
 
   // Get Waldo et al coordinates
   useEffect(() => {
@@ -48,17 +56,22 @@ function Game() {
   useEffect(() => {
     if (checkForWin(gameState)) {
       console.log("GAME OVER");
+      const worstBestTime = timeToNumber(bestTimes[4].time);
+      const endTimeNum = timeToNumber(endTime)
+      if (endTimeNum < worstBestTime){
+        console.log('that is fast')
+        setFast(()=>true);
+      }
+
     }
-  }, [gameState]);
-
-
+  }, [endTime]);
 
   return (
     <div className="container">
       <div className="headers">
         <CharacterKey   gameState={gameState}></CharacterKey>
         <button>Exit Game</button>
-        <Stopwatch gameState = {gameState}></Stopwatch>
+        <Stopwatch gameState = {gameState} setEndTime ={setEndTime}></Stopwatch>
       </div>
       <img
         src={backgroundImg}
@@ -86,7 +99,7 @@ function Game() {
         gameState={gameState}
         targetInfo={targetInfo}></DropdownForLabeling>
       { checkForWin(gameState) &&
-        <Modal></Modal>
+        <Modal fast = {fast}></Modal>
       }  
     </div>
   );

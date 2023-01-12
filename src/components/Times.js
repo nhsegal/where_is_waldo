@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import "./Times.css";
 
 const Times = (props) => {
+  /*
   const [bestTimes, setBestTimes] = useState([]);
 
   function compare( a, b ) {
@@ -24,7 +25,6 @@ const Times = (props) => {
   }
   
   useEffect(() => {
-
     const fetchData = async () => {
       try{
         const data = await getDocs(collection(database, "bestTimes"));
@@ -37,16 +37,15 @@ const Times = (props) => {
       }
     };
     fetchData().catch((err)=>console.log(err))
-
   }, []);
-
+*/
   return (
     <div className="times">
       <h1>
         <span className="where">Best</span> <span className="waldo">Times</span>
       </h1>
       <ol>
-      { bestTimes.map((e,i) =>  {
+      { props.bestTimes.map((e,i) =>  {
         return (
           <li key={e.id}><div>{i+1}.</div> <div className="name">{e.name}</div> <div>{e.time}</div></li>
         )
