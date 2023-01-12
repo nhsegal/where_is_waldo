@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/where_is_waldo/static/css/main.777e2cb9.css",
-    "main.js": "/where_is_waldo/static/js/main.1cb456fa.js",
+    "main.js": "/where_is_waldo/static/js/main.8a9b76f6.js",
     "static/media/where_is_waldo.jpeg": "/where_is_waldo/static/media/where_is_waldo.20962cb7ad818e5ce568.jpeg",
     "static/media/wizard.png": "/where_is_waldo/static/media/wizard.707640a74b9bc20df7d2.png",
     "index.html": "/where_is_waldo/index.html",
     "main.777e2cb9.css.map": "/where_is_waldo/static/css/main.777e2cb9.css.map",
-    "main.1cb456fa.js.map": "/where_is_waldo/static/js/main.1cb456fa.js.map"
+    "main.8a9b76f6.js.map": "/where_is_waldo/static/js/main.8a9b76f6.js.map"
   },
   "entrypoints": [
     "static/css/main.777e2cb9.css",
-    "static/js/main.1cb456fa.js"
+    "static/js/main.8a9b76f6.js"
   ]
 }
