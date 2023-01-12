@@ -12,7 +12,7 @@ const Modal = (props) => {
        addDoc(collection(database, "bestTimes"), {
         name: formData.get('name'),
         time: formData.get('time')
-      });
+      }).then( props.setCheckTimes(()=>true))
       navigate('/')
 
     };
@@ -25,7 +25,7 @@ const Modal = (props) => {
           <div>
             <label>
               Name: 
-              <input type="text" name="name" required maxlength="10"></input>
+              <input type="text" name="name" required maxLength="10"></input>
             </label>
           </div>
           <div>

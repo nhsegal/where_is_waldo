@@ -26,8 +26,8 @@ function Game(props) {
   const [fast, setFast] = useState(false)
 
   const bestTimes = props.bestTimes
-
-
+  console.log(props)
+  props.setCheckTimes(false)
  
 
   // Get Waldo et al coordinates
@@ -59,8 +59,8 @@ function Game(props) {
       const worstBestTime = timeToNumber(bestTimes[4].time);
       const endTimeNum = timeToNumber(endTime)
       if (endTimeNum < worstBestTime){
-        console.log('that is fast')
         setFast(()=>true);
+       // props.setCheckTimes(()=>true)
       }
 
     }
@@ -99,7 +99,7 @@ function Game(props) {
         gameState={gameState}
         targetInfo={targetInfo}></DropdownForLabeling>
       { checkForWin(gameState) &&
-        <Modal fast = {fast} endTime={endTime}></Modal>
+        <Modal fast = {fast} endTime={endTime} setCheckTimes = {props.setCheckTimes}></Modal>
       }  
     </div>
   );

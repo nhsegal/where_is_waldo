@@ -8,9 +8,8 @@ import { app, database } from "./firebase";
 import timeToNumber from "./helpers/timeToNumber";
 
 function App() {
-
+  const [checkTimes, setCheckTimes] = useState(true)
   const [bestTimes, setBestTimes] = useState([]);
-
   function compare( a, b ) {
     let A = timeToNumber(a.time);
     let B = timeToNumber(b.time);
@@ -24,27 +23,27 @@ function App() {
   }
   
   useEffect(() => {
-    const fetchData = async () => {
-      try{
-        const data = await getDocs(collection(database, "bestTimes"));
-        setBestTimes(data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-        .sort(compare).slice(0,5));
- 
-      }
-      catch(error){
-        console.error(error)
-      }
-    };
-    fetchData().catch((err)=>console.log(err))
-  }, []);
-
-
+    if (checkTimes){
+      const fetchData = async () => {
+        try{
+          const data = await getDocs(collection(database, "bestTimes"));
+          setBestTimes(data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+          .sort(compare).slice(0,5));
+        }
+        catch(error){
+          console.error(error)
+        }
+      };
+      fetchData().catch((err)=>console.log(err))
+    }
+    }
+ , [checkTimes]);
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/Game" element={<Game bestTimes = {bestTimes}/>} />
+        <Route path="/Game" element={<Game bestTimes = {bestTimes} setCheckTimes = {setCheckTimes}/>} />
         <Route path="/Times" element={<Times bestTimes ={bestTimes}/>} />
       </Routes>
     </BrowserRouter>
