@@ -4,7 +4,11 @@ import { checkForWin } from "../helpers/checkForSuccess";
 
 const Stopwatch = (props) => { 
   const [time, setTime] = useState(0);
-  const [running, setRunning] = useState(true);
+  const [running, setRunning] = useState(props.start);
+  
+  useEffect(()=>{
+    setRunning(props.start)
+  },[props.start])
 
   useEffect(() => {
     let interval;
@@ -24,7 +28,6 @@ const Stopwatch = (props) => {
       const min = ("0" + Math.floor((time / 60000) % 60)).slice(-2);
       const sec = ("0" +  Math.floor((time / 1000) % 60)).slice(-2);
       const dec = ("0" + ((time / 10) % 100)).slice(-2);
-      //console.log(`${min}:${sec}.${dec}`)
       props.setEndTime(()=>`${min}:${sec}:${dec}`)
     }
 
@@ -37,15 +40,7 @@ const Stopwatch = (props) => {
         <span>{("0" +  Math.floor((time / 1000) % 60)).slice(-2)}:</span>
         <span>{("0" + ((time / 10) % 100)).slice(-2)}</span>
       </div>
-      {
-        /*
-             <div className="buttons">
-        <button onClick={() => setRunning(true)}>Start</button>
-        <button onClick={() => setRunning(false)}>Stop</button>
-        <button onClick={() => setTime(0)}>Reset</button>       
-      </div>
-        */
-      }
+
  
     </div>
   );

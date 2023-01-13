@@ -1,10 +1,10 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import Game from "./components/Game";
 import Home from "./components/Home";
 import Times from "./components/Times";
 import React, { useState, useEffect } from "react";
-import { collection, getDocs, query, orderBy } from "firebase/firestore";
-import { app, database } from "./firebase";
+import { collection, getDocs,  } from "firebase/firestore";
+import { database } from "./firebase";
 import timeToNumber from "./helpers/timeToNumber";
 
 function App() {
@@ -40,13 +40,13 @@ function App() {
  , [checkTimes]);
 
   return (
-    <BrowserRouter>
+    <HashRouter  basename=''>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Game" element={<Game bestTimes = {bestTimes} setCheckTimes = {setCheckTimes}/>} />
         <Route path="/Times" element={<Times bestTimes ={bestTimes}/>} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 

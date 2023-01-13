@@ -3,6 +3,16 @@
   gap: 5px;
 }
 
+.char-label {
+  font-size: .8rem;
+  text-align: center;
+  font-family: 'Optima';
+}
+
+.char-cont{
+  display: flex;
+  flex-direction: column;
+}
 .character-key-img {
   box-sizing: border-box;
   height: 3.5rem;

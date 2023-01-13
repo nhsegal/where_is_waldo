@@ -5,7 +5,7 @@ import DropdownForLabeling from "./DropdownForLabeling";
 import React, { useState, useEffect } from "react";
 import Stopwatch from "./Stopwatch";
 import { collection, getDocs } from "firebase/firestore";
-import { app, database } from "../firebase";
+import { database } from "../firebase";
 import CharacterKey from "./CharacterKey";
 import Marker from "./Marker";
 import Modal from "./Modal";
@@ -24,12 +24,12 @@ function Game(props) {
   const [targetInfo, setTargetInfo] = useState([]);
   const [endTime, setEndTime] = useState(0);
   const [fast, setFast] = useState(false)
-
-  const bestTimes = props.bestTimes
-  console.log(props)
-  props.setCheckTimes(false)
+  const [start, setStart] = useState(false)
  
 
+  const bestTimes = props.bestTimes
+  //props.setCheckTimes(false);
+ 
   // Get Waldo et al coordinates
   useEffect(() => {
     const fetchData = async () => {
@@ -60,18 +60,21 @@ function Game(props) {
       const endTimeNum = timeToNumber(endTime)
       if (endTimeNum < worstBestTime){
         setFast(()=>true);
-       // props.setCheckTimes(()=>true)
       }
 
     }
   }, [endTime]);
 
+  useEffect(()=>{
+    setStart(true)
+    console.log(start)
+  },[])
+
   return (
     <div className="container">
       <div className="headers">
         <CharacterKey   gameState={gameState}></CharacterKey>
-      
-        <Stopwatch gameState = {gameState} setEndTime ={setEndTime}></Stopwatch>
+        <Stopwatch gameState = {gameState} setEndTime ={setEndTime} start={start}></Stopwatch>
       </div>
       <img
         src={backgroundImg}

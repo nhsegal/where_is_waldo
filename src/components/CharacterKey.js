@@ -9,9 +9,20 @@ const CharacterKey = (props) => {
 
   return (
     <div className='character-key'>
-     <img src={waldo} alt='waldo' className={gameState.waldoFound ? 'found' : 'character-key-img'}/>
+      <div className='char-cont'> 
+      <div className='char-label'>Waldo</div>
+      <img src={waldo} alt='waldo' className={gameState.waldoFound ? 'found' : 'character-key-img'}/>
+    
+      </div>
+      <div className='char-cont'> 
+      <div className='char-label'>Odlaw</div>
      <img src={odlaw} alt='odlaw' className={gameState.odlawFound ? 'found' : 'character-key-img'}/>
+     </div>
+     <div className='char-cont'> 
+     <div className='char-label'>Wizard</div>
      <img src={wizard} alt='wizard' className={gameState.wizardFound ? 'found' : 'character-key-img'}/>
+     </div>
+   
     </div>
   )
 }

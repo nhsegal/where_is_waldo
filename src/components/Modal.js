@@ -1,6 +1,6 @@
 import "./Modal.css";
-import {Form, Link, Routes, Route, useNavigate} from 'react-router-dom';
-import { app, database } from "../firebase";
+import { Link, useNavigate} from 'react-router-dom';
+import { database } from "../firebase";
 import { collection, addDoc, } from "firebase/firestore";
 
 const Modal = (props) => {
