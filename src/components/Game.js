@@ -1,4 +1,4 @@
-import backgroundImg from "../imgs/where_is_waldo.jpeg";
+import backgroundImg from "../imgs/where_is_waldo.jpg";
 import "./Game.css";
 import { checkForWin } from "../helpers/checkForSuccess";
 import DropdownForLabeling from "./DropdownForLabeling";
