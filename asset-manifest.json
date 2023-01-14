@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/where_is_waldo/static/css/main.8be36f03.css",
-    "main.js": "/where_is_waldo/static/js/main.a495ffab.js",
-    "static/media/where_is_waldo.jpeg": "/where_is_waldo/static/media/where_is_waldo.20962cb7ad818e5ce568.jpeg",
+    "main.js": "/where_is_waldo/static/js/main.a37bc673.js",
+    "static/media/where_is_waldo.jpg": "/where_is_waldo/static/media/where_is_waldo.8c602ab7d8585ed9402f.jpg",
     "static/media/wizard.png": "/where_is_waldo/static/media/wizard.707640a74b9bc20df7d2.png",
     "index.html": "/where_is_waldo/index.html",
     "main.8be36f03.css.map": "/where_is_waldo/static/css/main.8be36f03.css.map",
-    "main.a495ffab.js.map": "/where_is_waldo/static/js/main.a495ffab.js.map"
+    "main.a37bc673.js.map": "/where_is_waldo/static/js/main.a37bc673.js.map"
   },
   "entrypoints": [
     "static/css/main.8be36f03.css",
-    "static/js/main.a495ffab.js"
+    "static/js/main.a37bc673.js"
   ]
 }
